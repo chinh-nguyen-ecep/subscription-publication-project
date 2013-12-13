@@ -1,0 +1,15 @@
+bucketName=ecep
+folder=subscription_publication_app/data2/outgoing/daily_aggregate
+destinationFolder=download
+database=analyticsdb
+userName=dw_job_agent
+data_file_config_id=2
+import_dir=import
+host=localhost
+userNameDB=autoscript
+passwd=ECEP-2009
+port=25439
+process_config_id=78
+time_refresh=60
+
+

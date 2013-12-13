@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="src/lib/commons-beanutils-1.8.2.jar"/>
+	<classpathentry kind="lib" path="src/lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="src/lib/commons-digester-1.8.jar"/>
+	<classpathentry kind="lib" path="src/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="src/lib/dropbox4j-0.1-sources.jar"/>
+	<classpathentry kind="lib" path="src/lib/groovy-all-1.7.5.jar"/>
+	<classpathentry kind="lib" path="src/lib/itext-2.1.7.jar"/>
+	<classpathentry kind="lib" path="src/lib/jasperreports-3.7.6.jar"/>
+	<classpathentry kind="lib" path="src/lib/jasperreports-chart-themes-3.7.6.jar"/>
+	<classpathentry kind="lib" path="src/lib/jasperreports-extensions-3.5.3.jar"/>
+	<classpathentry kind="lib" path="src/lib/jasperreports-fonts-3.7.6.jar"/>
+	<classpathentry kind="lib" path="src/lib/mail.jar"/>
+	<classpathentry kind="lib" path="src/lib/poi-3.6.jar"/>
+	<classpathentry kind="lib" path="src/lib/poi-ooxml-3.6.jar"/>
+	<classpathentry kind="lib" path="src/lib/poi-ooxml-schemas-3.6.jar"/>
+	<classpathentry kind="lib" path="src/lib/postgresql-8.4-701.jdbc4.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring-2.5.6.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring-core-2.5.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

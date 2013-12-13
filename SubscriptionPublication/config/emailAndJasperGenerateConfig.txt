@@ -1,0 +1,13 @@
+database=warehouse
+host=localhost
+port=55432
+dbuser=pentaho
+dbpassword=ECEP-2009
+mail.smtp.host=smtp.gmail.com
+mail.smtp.socketFactory.port=465
+mail.smtp.socketFactory.class=javax.net.ssl.SSLSocketFactory
+mail.smtp.auth=true
+mail.smtp.port=465
+mail.smtp.user=pentaho@ecepvn.org
+mail.smtp.pass=ECEP-2009
+

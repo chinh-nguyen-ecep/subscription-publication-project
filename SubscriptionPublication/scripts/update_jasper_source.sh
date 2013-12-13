@@ -1,0 +1,1 @@
+cd /opt/pentaho/biserver-ce/pentaho-solutions/ && cp -vrafu Adcel\ reports/ ad_serving/ delivery_reports/ event_tracker/ verve_ads_ops/ billing_accounting/ NetWork\ traffic\ reports/ third_party_reports/ /data/outgoing/jasper_reports/sources/ && chown -R postgres:dwadmin /data/outgoing/jasper_reports/sources/

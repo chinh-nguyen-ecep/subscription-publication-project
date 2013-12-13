@@ -1,0 +1,8 @@
+bucketName=ecep
+folder=subscription_publication_app/data/outgoing/daily
+destinationFolder=download
+database=analyticsdb
+data_file_config_id=2
+import_dir=import
+
+

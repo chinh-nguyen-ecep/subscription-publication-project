@@ -1,0 +1,12 @@
+database=warehouse
+host=localhost
+port=55432
+dbuser=pentaho
+dbpassword=ECEP-2009
+mail.smtp.host=smtp.domainlocalhost.com
+mail.smtp.socketFactory.port=587
+mail.smtp.socketFactory.class=javax.net.ssl.SSLSocketFactory
+mail.smtp.auth=true
+mail.smtp.port=587
+mail.smtp.user=dataman@vervewireless.com
+mail.smtp.pass=D@taman1

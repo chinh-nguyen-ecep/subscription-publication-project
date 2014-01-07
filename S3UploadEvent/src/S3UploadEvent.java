@@ -31,7 +31,9 @@ public class S3UploadEvent {
 			File file = fileList.get(0);
 
 			if (file.isFile()) {
-				String key = file.getParent() + "/" + file.getName();
+//				String key = file.getParent() + "/" + file.getName();
+				String[] arrayParent=file.getParent().split("/"); 
+				String key = arrayParent[arrayParent.length-1]+"/"+file.getName();
 				if (key.indexOf("/") == 0)
 					key = key.substring(1);
 

@@ -293,3 +293,28 @@ mkdir warehouse_aggregate_files
 mkdir warehouse_aggregate_files/done
 mkdir warehouse_aggregate_files/error
 chmod -R 775 warehouse_aggregate_files
+
+------------- Insert a new table to subscript tion
+-- Insert new table to data source tables
+INSERT INTO control.spctl_data_source_tables
+(
+  table_type,
+  table_name
+)
+VALUES
+(
+  'DLA',
+  'adstraffic.daily_event_stats_by_flight'
+);
+
+-- Run this query to generate insert query to data file config
+SELECT 'INSERT INTO control.spctl_data_file_config(df_config_name,df_config_format,dt_desc,df_source_file,data_subject_id,export_module_id,data_source_table_id) VALUES ('''||table_name||''',''csv'','''','''',6,1,'||data_source_table_id||');' 
+FROM control.spctl_data_source_tables 
+WHERE table_name='adstraffic.daily_event_stats_by_flight'
+ORDER BY table_name
+
+-- create a data file config
+INSERT INTO control.spctl_data_file_config(df_config_name,df_config_format,dt_desc,df_source_file,data_subject_id,export_module_id,data_source_table_id) VALUES ('adstraffic.daily_event_stats_by_flight','csv','','',1,1,568);
+-- connect data file config into a subscription
+INSERT INTO control.spctl_pub_customer_article(subscription_key,df_config_id) 
+VALUES (19,116);

@@ -294,6 +294,11 @@ mkdir warehouse_aggregate_files/done
 mkdir warehouse_aggregate_files/error
 chmod -R 775 warehouse_aggregate_files
 
+--------------- Rerun a process error
+ UPDATE control.spctl_subscription_publication_process SET process_status ='WT' WHERE publication_process_id=3299;
+ UPDATE control.spctl_subscription_publication_process_concurrent_trans SET status ='ER' WHERE publication_process_id=3299;
+
+
 ------------- Insert a new table to subscript tion
 -- Insert new table to data source tables
 INSERT INTO control.spctl_data_source_tables

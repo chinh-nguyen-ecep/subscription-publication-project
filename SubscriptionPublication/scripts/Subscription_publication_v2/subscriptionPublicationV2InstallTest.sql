@@ -309,17 +309,37 @@ INSERT INTO control.spctl_data_source_tables
 VALUES
 (
   'DLA',
-  'adstraffic.daily_event_stats_by_flight'
+  'adsops.daily_agg_verve_ads_by_remnant'
 );
 
 -- Run this query to generate insert query to data file config
 SELECT 'INSERT INTO control.spctl_data_file_config(df_config_name,df_config_format,dt_desc,df_source_file,data_subject_id,export_module_id,data_source_table_id) VALUES ('''||table_name||''',''csv'','''','''',6,1,'||data_source_table_id||');' 
 FROM control.spctl_data_source_tables 
-WHERE table_name='adstraffic.daily_event_stats_by_flight'
+WHERE table_name='adsops.daily_agg_verve_ads_by_remnant'
 ORDER BY table_name
 
--- create a data file config
-INSERT INTO control.spctl_data_file_config(df_config_name,df_config_format,dt_desc,df_source_file,data_subject_id,export_module_id,data_source_table_id) VALUES ('adstraffic.daily_event_stats_by_flight','csv','','',1,1,568);
+-- create a data file config use export module to csv
+INSERT INTO control.spctl_data_file_config(df_config_name,df_config_format,dt_desc,df_source_file,data_subject_id,export_module_id,data_source_table_id) VALUES ('adsops.daily_agg_verve_ads_by_remnant','csv','','',5,1,580);
+
+-- create a data file config use export module to jaspert
+INSERT INTO control.spctl_data_file_config(
+					df_config_name,
+					df_config_format,
+					dt_desc,
+					df_source_file,
+					data_subject_id,
+					export_module_id,
+					df_attribute,
+					data_source_table_id) 
+					VALUES (
+					'Daily Verve Ads V1 xls',
+					'xls',
+					'',
+					'/home/postgres/bin/subscription_publication/jasperReportTemplates/verve_ads_ops/jaspers/daily_verve_ads_v1/daily_verve_ads.jrxml',
+					7,
+					2,
+					'',
+					580);
 -- connect data file config into a subscription
 INSERT INTO control.spctl_pub_customer_article(subscription_key,df_config_id) 
 VALUES (19,116);

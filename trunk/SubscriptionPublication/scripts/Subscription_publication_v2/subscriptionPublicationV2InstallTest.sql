@@ -342,4 +342,14 @@ INSERT INTO control.spctl_data_file_config(
 					580);
 -- connect data file config into a subscription
 INSERT INTO control.spctl_pub_customer_article(subscription_key,df_config_id) 
-VALUES (19,116);
+VALUES (27,178);
+
+--Insert 1 customer get report via email
+INSERT INTO control.spctl_pub_customer(customer_name,customer_desc,folder_content_transfer_script,transfer_script_name) 
+VALUES ('Daily Verve Ads Group','Group users will receive Daily Verve Ads report by email','/home/postgres/bin/subscription_publication','publicToEmail.pl');
+INSERT INTO control.spctl_customer_contact(customer_email,customer_phone_number,customer_key)
+VALUES ('chinh.nguyen@ecepvn.org','+84982777098',3);
+--insert subscription for this customer. Every customer can be have many subscription
+INSERT INTO control.spctl_pub_customer_subscription(subscription_name,subscription_desc,frequence,zip_before_transfer,customer_key)
+VALUES ('Daily Verve Ads Report','','DAILY',TRUE,3);
+INSERT INTO control.spctl_subscription_publication_checkpoint(subscription_key) VALUES (27);

@@ -180,14 +180,6 @@ sub main{
 	$df_attribute=~ s/\{calendar_year_month\}/$report_month/g;
 	$df_attribute=~ s/\{month_since_2005\}/$report_month_since_2005/g;
 	
-	$report_name=~ s/\{v_eastern_date_sk\}/$report_date_sk/g;
-	$report_name=~ s/\{v_start_date_sk\}/$v_start_date_sk/g;
-	$report_name=~ s/\{full_date\}/$report_date/g;
-	$report_name=~ s/\{v_start_full_date\}/$v_start_date/g;
-	$report_name=~ s/\{year_week\}/$report_week/g;
-	$report_name=~ s/\{calendar_year_month\}/$report_month/g;
-	$report_name=~ s/\{month_since_2005\}/$report_month_since_2005/g;
-	
 	#Process jasper source file
 	my $source_dir='';
 	my $source_file_name='';
@@ -229,18 +221,27 @@ sub main{
 		my $md5value=md5sum("$export_dir/$file_name_temp");
 		note("Md5sum: $md5value");
 		##Change name of file
-		## file format "schema.table_name.dataexportdate.md5.timecode.csv"
+		## file format "schema.table_name.date.md5.timecode.csv"
 		$final_file_name=$export_file_name_format;
 		$final_file_name=~ s/reportName/$report_name/g;
 		$final_file_name=~ s/md5/$md5value/g;
 		$final_file_name=~ s/timecode/$time_tmp/g;
 		$final_file_name=~ s/format/$export_file_format/g;
 		
-		if($roll_back_date>0){
-			$final_file_name=~ s/date/$v_start_date.$report_date/g;
-		}else{
-			$final_file_name=~ s/date/$report_date/g;
+		
+		if($table_type eq 'MLA'){
+			$final_file_name=~ s/date/$report_month/g;
+		}else if($table_type eq 'WLA'){
+			$final_file_name=~ s/date/$report_week/g;
+		}else if($table_type eq 'DLA'){
+			if($roll_back_date>0){
+				$final_file_name=~ s/date/$v_start_date.$report_date/g;
+			}else{
+				$final_file_name=~ s/date/$report_date/g;
+			}
 		}
+		
+		
 		$cmd=`mv "$export_dir/$file_name_temp" "$export_dir/$final_file_name"`;
 		my $file_size_t=`du -k "$export_dir/$final_file_name"`;
 		($file_size)= $file_size_t=~ /(\d+)/;

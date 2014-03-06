@@ -228,7 +228,6 @@ sub main{
 		$final_file_name=~ s/timecode/$time_tmp/g;
 		$final_file_name=~ s/format/$export_file_format/g;
 		
-		
 		if($table_type eq 'MLA'){
 			$final_file_name=~ s/date/$report_month/g;
 		}elsif($table_type eq 'WLA'){
@@ -236,10 +235,10 @@ sub main{
 		}elsif($table_type eq 'DLA'){
 			if($roll_back_date>0){
 				$final_file_name=~ s/date/$v_start_date.$report_date/g;
-			}
-		}else{
+			}else{
 				$final_file_name=~ s/date/$report_date/g;
 			}
+		}
 		
 		
 		$cmd=`mv "$export_dir/$file_name_temp" "$export_dir/$final_file_name"`;

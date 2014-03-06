@@ -180,6 +180,14 @@ sub main{
 	$df_attribute=~ s/\{calendar_year_month\}/$report_month/g;
 	$df_attribute=~ s/\{month_since_2005\}/$report_month_since_2005/g;
 	
+	$report_name=~ s/\{v_eastern_date_sk\}/$report_date_sk/g;
+	$report_name=~ s/\{v_start_date_sk\}/$v_start_date_sk/g;
+	$report_name=~ s/\{full_date\}/$report_date/g;
+	$report_name=~ s/\{v_start_full_date\}/$v_start_date/g;
+	$report_name=~ s/\{year_week\}/$report_week/g;
+	$report_name=~ s/\{calendar_year_month\}/$report_month/g;
+	$report_name=~ s/\{month_since_2005\}/$report_month_since_2005/g;
+	
 	#Process jasper source file
 	my $source_dir='';
 	my $source_file_name='';

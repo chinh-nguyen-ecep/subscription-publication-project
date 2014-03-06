@@ -115,7 +115,63 @@ sub main{
 	$query_handle->bind_columns(undef,\$v_start_date,\$v_start_date_sk);
 	$query_handle->fetch();
 	sqlDisconnect($dbh);
-	
+  #Paser subscription_attribute to got date report
+  # The format of subscription_attribute should be: 
+  #		date=2014-02-10
+  #		start_date=2014-02-01&end_date=2014-01-02 
+  #		week=2014-W109
+  #		month=2014-Jan
+	if($process_actribute ne ''){
+		my @string_as_array = split( '&', $process_actribute );
+		foreach $rows(@string_as_array){
+			my @temp_array=split( '=', $rows );
+			my $key=$temp_array[0];
+			my $value=$temp_array[1];
+			
+			if($key eq 'date' || $key eq 'end_date'){
+					$report_date=$value;
+					my $query="SELECT date_sk FROM refer.date_dim WHERE full_date=?";
+					my $dbh=getConnection();
+					my $query_handle = $dbh->prepare($query);
+					$query_handle->execute($report_date);
+					$query_handle->bind_columns(undef,\$report_date_sk);
+					$query_handle->fetch();
+					# reload $v_start_date,$v_start_date_sk when $report_date_sk changed
+						if($v_start_date eq ''){
+							$query="SELECT full_date,date_sk FROM refer.date_dim WHERE date_sk=$report_date_sk-$roll_back_date";
+							$query_handle = $dbh->prepare($query);
+							$query_handle->execute();
+							$query_handle->bind_columns(undef,\$v_start_date,\$v_start_date_sk);
+							$query_handle->fetch();
+						}
+						
+					sqlDisconnect($dbh);
+			}
+			if($key eq 'start_date'){
+					$v_start_date=$value;
+					my $query="SELECT date_sk FROM refer.date_dim WHERE full_date=?";
+					my $dbh=getConnection();
+					my $query_handle = $dbh->prepare($query);
+					$query_handle->execute($v_start_date);
+					$query_handle->bind_columns(undef,\$v_start_date_sk);
+					$query_handle->fetch();
+					sqlDisconnect($dbh);
+			}
+			if($key eq 'week'){
+					$report_week=$value;					
+			}
+			if($key eq 'month'){
+					$report_month=$value;	
+					my $query="SELECT month_since_2005 FROM refer.month_dim WHERE calendar_year_month=?";
+					my $dbh=getConnection();
+					my $query_handle = $dbh->prepare($query);
+					$query_handle->execute($report_month);
+					$query_handle->bind_columns(undef,\$report_month_since_2005);
+					$query_handle->fetch();
+					sqlDisconnect($dbh);					
+			}
+		}
+	}	
 	$df_attribute=~ s/\{v_eastern_date_sk\}/$report_date_sk/g;
 	$df_attribute=~ s/\{v_start_date_sk\}/$v_start_date_sk/g;
 	$df_attribute=~ s/\{full_date\}/$report_date/g;
@@ -215,4 +271,3 @@ sub main{
 	# remove error lof file
 	system("rm -rf log/$pid");
 }
-

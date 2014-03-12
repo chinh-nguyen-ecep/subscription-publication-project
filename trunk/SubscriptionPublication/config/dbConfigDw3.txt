@@ -1,0 +1,5 @@
+database=warehouse
+host=dw3
+port=5432
+dbuser=pentaho
+dbpassword=verve-2013

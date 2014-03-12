@@ -204,7 +204,7 @@ sub main{
 	my $file_size=0;
 	my $final_file_name='';	
 	my $md5value='';
-	my @cmd=`cd $bin_dir && java -jar jasperReportGenerater.jar "$source_dir" "$source_file_name" "$export_dir" $export_file_format $file_name_temp dbConfigDw3.txt $df_attribute 2>log/$pid`;	
+	my @cmd=`cd $bin_dir && java -jar jasperReportGeneraterCustomConfig.jar "$source_dir" "$source_file_name" "$export_dir" $export_file_format $file_name_temp dbConfigDw3.txt $df_attribute 2>log/$pid`;	
 	my @errorOutput=fileToArray("log/$pid");
 	#find exception in errorOutPut
 	foreach $rows(@errorOutput){

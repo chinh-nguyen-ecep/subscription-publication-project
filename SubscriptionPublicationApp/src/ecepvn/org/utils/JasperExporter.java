@@ -26,6 +26,7 @@ public class JasperExporter {
 	private String exportPath="";
 	private String exportFormat="pdf";
 	private String exportFileName="";
+	private String dbConfigFileName="";
 	private HashMap params=new HashMap();
 	
 	public JasperExporter() {
@@ -82,6 +83,10 @@ public class JasperExporter {
 		this.exportFormat = exportFormat;
 	}
 
+	public void setDbConfigFileName(String dbConfigFileName) {
+		this.dbConfigFileName = dbConfigFileName;
+	}
+
 	public void reportGenerator () throws IOException, JRException{
 		JasperReport jasperReport = null;
 		JasperPrint jasperPrint = null;
@@ -91,9 +96,14 @@ public class JasperExporter {
 			//JasperCompileManager.compileReportToFile( this.dirPath+"//"+this.mainJasperFileName+".jrxml",this.dirPath+"//"+this.mainJasperFileName+".jasper" );
 			jasperReport =JasperCompileManager.compileReport(this.dirPath+"//"+this.mainJasperFileName+".jrxml");
 			
-		
+			Connection conn;
 		//get connection
-		Connection conn=ConnectDB.getConnection();
+			if(!dbConfigFileName.equals("")){
+				conn=ConnectDB.getConnection(dbConfigFileName);
+			}else{
+				conn=ConnectDB.getConnection();
+			}
+		
 		
 		// Generate jasper print
 		params.put("SUBREPORT_DIR", this.dirPath+"//");

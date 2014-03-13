@@ -50,7 +50,32 @@ public class ConnectDB {
 		is.close();
 		return connection;
 	}
-
+	public static synchronized Connection getConnection(String configFileName) throws IOException {
+		Connection connection = null;
+		Properties prop = new Properties();
+		// the configuration file name
+        String fileName = "config/"+configFileName;            
+        InputStream is = new FileInputStream(fileName);
+        // load the properties file
+        prop.load(is);
+        String host=prop.getProperty("host");
+        String port=prop.getProperty("port");
+        String database=prop.getProperty("database");
+        String user=prop.getProperty("dbuser");
+        String pass=prop.getProperty("dbpassword");
+        
+		String strConnect = "jdbc:postgresql://"+host+":"+port+"/"+database;
+//		String strConnect = "jdbc:postgresql://localhost:35432/maponics";
+		try {
+//			System.out.println(strConnect+"-"+user+"-"+pass);
+			connection = DriverManager.getConnection(strConnect, user,
+					pass);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		is.close();
+		return connection;
+	}
 	/**
 	 * Get ResultSet of executing a query
 	 * 

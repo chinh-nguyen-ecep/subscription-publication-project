@@ -143,7 +143,7 @@ sub main{
 	#note("Emails input: $email_input");
 	
 	my $email_subject='"'.$subscription_name.'"';
-	my $email_content="\"$subscription_desc <p/>The email send auto by Subscription publication system. Do not reply this email.\"";
+	my $email_content="\"$subscription_desc <p/>The email was send auto by Subscription publication system. Do not reply this email.\"";
 	my @cmd=`cd $folder_content_transfer_script && java -jar emailReport.jar $email_subject $email_content $email_input $file_input 2>log/$pid`;
 	my @errorOutput=fileToArray("log/$pid");
 	note("Standar output: @cmd");

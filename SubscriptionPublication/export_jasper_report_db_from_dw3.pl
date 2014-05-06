@@ -130,20 +130,20 @@ sub main{
 			
 			if($key eq 'date' || $key eq 'end_date'){
 					$report_date=$value;
-					my $query="SELECT date_sk FROM refer.date_dim WHERE full_date=?";
+					my $query="SELECT date_sk,year_week_monday,calendar_year_month,month_since_2005 FROM refer.date_dim WHERE full_date=?";
 					my $dbh=getConnection();
 					my $query_handle = $dbh->prepare($query);
 					$query_handle->execute($report_date);
-					$query_handle->bind_columns(undef,\$report_date_sk);
+					$query_handle->bind_columns(undef,\$report_date_sk,\$report_week,\$report_month,\$report_month_since_2005);
 					$query_handle->fetch();
 					# reload $v_start_date,$v_start_date_sk when $report_date_sk changed
-						if($v_start_date eq ''){
+						
 							$query="SELECT full_date,date_sk FROM refer.date_dim WHERE date_sk=$report_date_sk-$roll_back_date";
 							$query_handle = $dbh->prepare($query);
 							$query_handle->execute();
 							$query_handle->bind_columns(undef,\$v_start_date,\$v_start_date_sk);
 							$query_handle->fetch();
-						}
+						
 						
 					sqlDisconnect($dbh);
 			}

@@ -47,7 +47,7 @@ VALUES ('Daily Verve Ads Group','Group users will receive Daily Verve Ads report
 INSERT INTO control.spctl_customer_contact(customer_email,customer_phone_number,customer_key)
 VALUES ('chinh.nguyen@ecepvn.org','+84982777098',3);
 INSERT INTO control.spctl_customer_contact(customer_email,customer_phone_number,customer_key)
-VALUES ('tho.hoang@vervemobile.com@ecepvn.org','',3);
+VALUES ('tho.hoang@vervemobile.com','',3);
 INSERT INTO control.spctl_customer_contact(customer_email,customer_phone_number,customer_key)
 VALUES ('nhut@ecepvn.org','',3);
 --insert subscription for this customer. Every customer can be have many subscription

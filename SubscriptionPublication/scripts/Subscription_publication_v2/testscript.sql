@@ -45,11 +45,11 @@ VALUES (27,182);
 INSERT INTO control.spctl_pub_customer(customer_name,customer_desc,folder_content_transfer_script,transfer_script_name) 
 VALUES ('Daily Verve Ads Group','Group users will receive Daily Verve Ads report by email','/home/postgres/bin/subscription_publication','publicToEmail.pl');
 INSERT INTO control.spctl_customer_contact(customer_email,customer_phone_number,customer_key)
-VALUES ('chinh.nguyen@ecepvn.org','+84982777098',3);
+VALUES ('chinh.nguyen@vervemobile.com','+84982777098',3);
 INSERT INTO control.spctl_customer_contact(customer_email,customer_phone_number,customer_key)
 VALUES ('tho.hoang@vervemobile.com','',3);
 INSERT INTO control.spctl_customer_contact(customer_email,customer_phone_number,customer_key)
-VALUES ('nhut@ecepvn.org','',3);
+VALUES ('nhut@vervemobile.com','',3);
 --insert subscription for this customer. Every customer can be have many subscription
 INSERT INTO control.spctl_pub_customer_subscription(subscription_name,subscription_desc,frequence,zip_before_transfer,customer_key)
 VALUES ('Daily Verve Ads Report','','DAILY',TRUE,3);

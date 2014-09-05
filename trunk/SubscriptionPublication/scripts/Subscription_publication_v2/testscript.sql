@@ -55,8 +55,8 @@ INSERT INTO control.spctl_pub_customer_subscription(subscription_name,subscripti
 VALUES ('Daily Verve Ads Report','','DAILY',TRUE,3);
 INSERT INTO control.spctl_subscription_publication_checkpoint(subscription_key) VALUES (27);
 
-UPDATE control.spctl_subscription_publication_process SET process_status ='WT' WHERE publication_process_id=3316;
- UPDATE control.spctl_subscription_publication_process_concurrent_trans SET status ='ER' WHERE publication_process_id=3316;
+UPDATE control.spctl_subscription_publication_process SET process_status ='WT' WHERE publication_process_id=4894;
+ UPDATE control.spctl_subscription_publication_process_concurrent_trans SET status ='ER' WHERE publication_process_id=4894;
 
 
 UPDATE control.spctl_data_file_config SET df_attribute='' WHERE df_config_id IN (176,177,178);
@@ -65,6 +65,7 @@ UPDATE control.spctl_pub_customer_article SET articel_status='INACTIVE' WHERE cu
 SELECT * FROM control.fn_spctl_insert_subscription_to_process(26,'date=2014-03-01',true);
 SELECT * FROM control.fn_spctl_insert_subscription_to_process(27,'date=2014-03-02',true);
 SELECT * FROM control.fn_spctl_insert_subscription_to_process(27,'start_date=2014-03-01&end_date=2014-03-04',true);
+SELECT * FROM control.fn_spctl_insert_subscription_to_process(2,'calendar_year_month=2014-Aug',true);
 
 UPDATE control.spctl_data_file_config SET df_config_name='Daily Verve Ads V1 - Date Range XLS' WHERE df_config_id =179;
 UPDATE control.spctl_pub_customer_subscription SET subscription_desc='Attached is Daily Verve Ads Report V1' WHERE subscription_key=27;

@@ -1,15 +1,19 @@
-bucketName=ecep
-folder=subscription_publication_app/data2/outgoing/daily_aggregate
+bucketName=verve-dw
+folder=outgoing/agg/ais
 destinationFolder=download
-database=analyticsdb
+database=warehouse
 userName=dw_job_agent
 data_file_config_id=2
-import_dir=import
+import_dir=/opt/temp
 host=localhost
 userNameDB=autoscript
 passwd=ECEP-2009
-port=25439
+port=5431
 process_config_id=78
 time_refresh=60
+sftphost=localhost
+sftpport=225
+sftpusername=chinh
+sftppass=verve-2013
 
 

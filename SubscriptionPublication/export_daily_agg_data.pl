@@ -211,7 +211,6 @@ sub export{
 		note("Exported file name: $final_file_name");
 		note("Exported file size: $file_size K");
 		note("Exported dir: $export_dir");	
-		note("Exported: @cmd");
 	}
 
 }

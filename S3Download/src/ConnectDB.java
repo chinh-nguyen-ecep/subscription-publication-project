@@ -1,6 +1,7 @@
 
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -10,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
+
+import utils.Encryptor;
 /**
  * The class create connection to postgres database 9 on vls001
  * @author Chinh nguyen
@@ -36,7 +39,7 @@ public class ConnectDB {
         String port=prop.getProperty("port");
         String database=prop.getProperty("database");
         String user=prop.getProperty("userNameDB");
-        String pass=prop.getProperty("passwd");
+        String pass=Encryptor.decrypt(prop.getProperty("passwd"));
         
 		String strConnect = "jdbc:postgresql://"+host+":"+port+"/"+database;
 //		String strConnect = "jdbc:postgresql://localhost:35432/maponics";

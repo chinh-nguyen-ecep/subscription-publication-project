@@ -1,11 +1,4 @@
-INSERT INTO CONTROL.spctl_data_source_tables (
-	table_type
-	,table_name
-	)
-VALUES (
-	'DLA'
-	,'adsops.daily_agg_verve_ads_by_remnant'
-	);
+INSERT INTO CONTROL.spctl_data_source_tables (	table_type	,table_name	) VALUES (	'DLA'	,'adsops.daily_agg_verve_ads_by_remnant'	);
 
 -- Run this query to generate insert query to data file config
 SELECT 'INSERT INTO control.spctl_data_file_config(df_config_name,df_config_format,dt_desc,df_source_file,data_subject_id,export_module_id,data_source_table_id) VALUES (''' || table_name || ''',''csv'','''','''',6,1,' || data_source_table_id || ');'

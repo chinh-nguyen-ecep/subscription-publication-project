@@ -1,19 +1,41 @@
+#bucket on S3
 bucketName=verve-dw
 folder=outgoing/agg/ais
-destinationFolder=download
-database=warehouse
-userName=dw_job_agent
-data_file_config_id=2
-import_dir=/opt/temp
-host=localhost
-userNameDB=autoscript
-passwd=ECEP-2009
-port=5431
-process_config_id=78
 time_refresh=60
+
+#Folder save download file
+destinationFolder=download
+
+#Configure where copy file to 
+import_dir=/opt/temp
+
+#database config
+host=localhost
+database=warehouse
+userNameDB=autoscript
+passwd=0MMv0nzQtAAyvliKEvE5fg==
+port=5431
+data_file_config_id=1000
+
+#sftp config
 sftphost=localhost
 sftpport=225
 sftpusername=chinh
-sftppass=verve-2013
+sftppass=K+NTREoXdhDiwMu+pDuV8Q==
+
+#email config
+mail.smtp.host=smtp.domainlocalhost.com
+mail.smtp.socketFactory.port=587
+mail.smtp.socketFactory.class=javax.net.ssl.SSLSocketFactory
+mail.smtp.auth=true
+mail.smtp.port=587
+mail.smtp.user=dataman@vervewireless.com
+mail.smtp.pass=J4/KSIMqKEdbeI0SZVh/Bg==
+
+#Second target server
+host2=dw11
+sftphost2=dw11
+
+
 
 

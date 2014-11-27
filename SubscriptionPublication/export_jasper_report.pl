@@ -142,8 +142,7 @@ sub main{
 							$query_handle = $dbh->prepare($query);
 							$query_handle->execute();
 							$query_handle->bind_columns(undef,\$v_start_date,\$v_start_date_sk);
-							$query_handle->fetch();
-						
+							$query_handle->fetch();						
 					sqlDisconnect($dbh);
 			}
 			if($key eq 'start_date'){
@@ -157,18 +156,39 @@ sub main{
 					sqlDisconnect($dbh);
 			}
 			if($key eq 'week'){
-					$report_week=$value;					
+					$report_week=$value;
+					my $query="SELECT full_date,date_sk,year_week_monday,calendar_year_month,month_since_2005 FROM refer.date_dim WHERE year_week_monday=? ORDER BY date_sk desc LIMIT 1";
+					my $dbh=getConnection();
+					my $query_handle = $dbh->prepare($query);
+					$query_handle->execute($report_week);
+					$query_handle->bind_columns(undef,\$report_date,\$report_date_sk,\$report_week,\$report_month,\$report_month_since_2005);
+					$query_handle->fetch();
+					# reload $v_start_date,$v_start_date_sk when $report_date_sk changed						
+							$query="SELECT full_date,date_sk FROM refer.date_dim WHERE date_sk=$report_date_sk-6";
+							$query_handle = $dbh->prepare($query);
+							$query_handle->execute();
+							$query_handle->bind_columns(undef,\$v_start_date,\$v_start_date_sk);
+							$query_handle->fetch();						
+					sqlDisconnect($dbh);					
 			}
+			
 			if($key eq 'month'){
 					$report_month=$value;	
-					my $query="SELECT month_since_2005 FROM refer.month_dim WHERE calendar_year_month=?";
+					my $query="SELECT full_date,date_sk,year_week_monday,calendar_year_month,month_since_2005 FROM refer.date_dim WHERE calendar_year_month=? ORDER BY date_sk desc LIMIT 1";
 					my $dbh=getConnection();
 					my $query_handle = $dbh->prepare($query);
 					$query_handle->execute($report_month);
-					$query_handle->bind_columns(undef,\$report_month_since_2005);
+					$query_handle->bind_columns(undef,\$report_date,\$report_date_sk,\$report_week,\$report_month,\$report_month_since_2005);
 					$query_handle->fetch();
+					# reload $v_start_date,$v_start_date_sk when $report_date_sk changed						
+							$query="SELECT full_date,date_sk FROM refer.date_dim WHERE calendar_year_month=? ORDER BY date_sk LIMIT 1";
+							$query_handle = $dbh->prepare($query);
+							$query_handle->execute($report_month);
+							$query_handle->bind_columns(undef,\$v_start_date,\$v_start_date_sk);
+							$query_handle->fetch();						
 					sqlDisconnect($dbh);					
 			}
+			
 		}
 	}	
 	$df_attribute=~ s/\{v_eastern_date_sk\}/$report_date_sk/g;

@@ -158,8 +158,8 @@ FROM CONTROL.fn_spctl_insert_subscription_to_process(27, 'date=2014-03-02', true
 SELECT *
 FROM CONTROL.fn_spctl_insert_subscription_to_process(27, 'start_date=2014-03-01&end_date=2014-03-04', true);
 
-SELECT *
-FROM CONTROL.fn_spctl_insert_subscription_to_process(2, 'calendar_year_month=2014-Aug', true);
+SELECT * FROM CONTROL.fn_spctl_insert_subscription_to_process(37, 'calendar_year_month=2014-Sep', true);
+SELECT * FROM CONTROL.fn_spctl_insert_subscription_to_process(37, 'calendar_year_week=2014-Sep', true);
 
 UPDATE CONTROL.spctl_data_file_config
 SET df_config_name = 'Daily Verve Ads V1 - Date Range XLS'

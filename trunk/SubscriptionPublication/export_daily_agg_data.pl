@@ -119,8 +119,8 @@ sub loadExportInput{
 	# Process process actribute input 
 	# Example: "date=2013-06-13"
 	# Example: "start_date=2013-06-10&end_date=2013-06-13"
-	# Example: "calendar_year_month=2013-Mar"
-	# Example: "year_week=2013-W23"
+	# Example: "month=2013-Mar"
+	# Example: "week=2013-W23"
 		my @process_actribute_array=split( '&', trim($process_actribute) );
 		foreach $row(@process_actribute_array){
 			my @temp_array=split( '=', $row );
@@ -135,9 +135,9 @@ sub loadExportInput{
 			}elsif($key eq "end_date"){
 				$end_date=$value;
 				$report_date=$value;
-			}elsif($key eq "calendar_year_month"){
+			}elsif($key eq "month"){
 				$calendar_year_month=$value;
-			}elsif($key eq "year_week"){
+			}elsif($key eq "week"){
 				$year_week=$value;
 			}else{
 				die "Wrong input param $key! date - start_date - end_date - calendar_year_month - year_week";

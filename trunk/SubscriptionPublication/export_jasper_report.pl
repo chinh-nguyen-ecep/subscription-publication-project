@@ -198,16 +198,20 @@ sub main{
 	$df_attribute=~ s/\{year_week\}/$report_week/g;
 	$df_attribute=~ s/\{calendar_year_month\}/$report_month/g;
 	$df_attribute=~ s/\{month_since_2005\}/$report_month_since_2005/g;
+
+	note("Jasper source file: $df_source_file");
+	note("Report date: $report_date");
 	
 	#Process jasper source file
 	my $source_dir='';
 	my $source_file_name='';
-	my @temp_array=split( '/', $df_source_file );
+	my @temp_array=split( '/', $df_source_file );	
 	$source_file_name=lastLine(@temp_array);
 	$source_file_name=~ s/\.jrxml//;
 	for($i=1;$i<@temp_array-1;$i++){
 		$source_dir=$source_dir.'/'.$temp_array[$i];
 	}
+	
 	############################
 	## Export jasper report to file ####
 	############################

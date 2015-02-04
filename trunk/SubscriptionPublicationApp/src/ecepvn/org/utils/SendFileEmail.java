@@ -59,11 +59,11 @@ public class SendFileEmail
 	
    public static void main(String [] args) throws IOException, AddressException, MessagingException
    {
-	   String[] files=new String[3] ;
-	   files[0]="D:\\testReport\\Weekly report 2013-W23.pdf";
-	   files[1]="D:\\testReport\\Weekly report 2013-W23.xls";
-	   files[2]="D:\\testReport\\week_year_report.2013-W23.pdf";
-      SendFileEmail.send("Test mail","<b>Hi chinh</b> <p />This the testing mail ","chinh.nguyen@ecepvn.org", files);
+	   String[] files=new String[1] ;
+	   files[0]="E:\\Metrotp.png";
+//	   files[1]="D:\\testReport\\Weekly report 2013-W23.xls";
+//	   files[2]="D:\\testReport\\week_year_report.2013-W23.pdf";
+      SendFileEmail.send("Test mail","<b>Hi All</b> <p />This the testing mail ","song@vervemobile.com,chinh.nguyen@vervemobile.com,nhut@vervemobile.com", files);
  
    }
 }
